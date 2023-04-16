@@ -1,13 +1,7 @@
-import { useEffect } from "react";
-import useMusicApi from "../hooks/use-music-api";
+import useMusicTracks from "../hooks/use-music-tracks";
 
 const Tracks = () => {
-  const { tracks, isLoading, error, getTracks } = useMusicApi();
-
-  useEffect(() => {
-    // The name is gonna be taken from an input.
-    getTracks({ name: "Bones" }).then();
-  }, [getTracks]);
+  const { tracks, isLoading, error } = useMusicTracks({ name: "Bones" });
 
   if (error) {
     return <p>Error</p>;
