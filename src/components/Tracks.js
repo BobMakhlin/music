@@ -1,17 +1,12 @@
 import { useEffect } from "react";
-import useGetRequest from "../hooks/use-get-request";
+import useMusicApi from "../hooks/use-music-api";
 
 const Tracks = () => {
-  const {
-    data: tracks,
-    isLoading,
-    error,
-    sendRequest,
-  } = useGetRequest("https://localhost:7223/api");
+  const {tracks, isLoading, error, getTracks} = useMusicApi();
 
   useEffect(() => {
-    sendRequest("/Tracks?name=Believer").then();
-  }, [sendRequest]);
+    getTracks().then();
+  }, [getTracks]);
 
   if (error) {
     return <p>Error</p>;
