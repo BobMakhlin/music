@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import useMusicApi from "../hooks/use-music-api";
 
 const Tracks = () => {
-  const {tracks, isLoading, error, getTracks} = useMusicApi();
+  const { tracks, isLoading, error, getTracks } = useMusicApi();
 
   useEffect(() => {
-    getTracks('Bones').then();
+    // The name is gonna be taken from an input.
+    getTracks({ name: "Bones" }).then();
   }, [getTracks]);
 
   if (error) {

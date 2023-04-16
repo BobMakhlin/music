@@ -11,7 +11,7 @@ const useMusicApi = () => {
     sendRequest,
   } = useGetRequest(musicApi);
 
-  const getTracks = useCallback(async (name) => {
+  const getTracks = useCallback(async ({name}) => {
     await sendRequest(`/Tracks?name=${name}`);
   }, [sendRequest]);
 
