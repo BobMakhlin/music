@@ -5,7 +5,7 @@ const Tracks = () => {
   const {tracks, isLoading, error, getTracks} = useMusicApi();
 
   useEffect(() => {
-    getTracks().then();
+    getTracks('Bones').then();
   }, [getTracks]);
 
   if (error) {
