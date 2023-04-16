@@ -1,27 +1,17 @@
 import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import useGetRequest from "../hooks/use-get-request";
 
 const Tracks = () => {
-  const [tracks, setTracks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {
+    data: tracks,
+    isLoading,
+    error,
+    sendRequest,
+  } = useGetRequest("https://localhost:7223/api");
 
   useEffect(() => {
-    const fetchTracks = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get("https://localhost:7223/api/Tracks?name=Believer");
-        setTracks(response.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTracks();
-  }, []);
+    sendRequest("/Tracks?name=Believer").then();
+  }, [sendRequest]);
 
   if (error) {
     return <p>Error</p>;
@@ -31,7 +21,7 @@ const Tracks = () => {
     return <p>Loading...</p>;
   }
 
-  const cards = tracks.map((x) => <div key={x.id}>{x.name}</div>);
+  const cards = tracks?.map((x) => <div key={x.id}>{x.name}</div>);
   return <div>{cards}</div>;
 };
 
