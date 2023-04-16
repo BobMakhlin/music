@@ -1,18 +1,31 @@
+import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
+import { useCallback } from "react";
 
 const Tracks = () => {
-  const { tracks, isLoading, error } = useMusicTracks({ name: "Bones" });
+  const [trackName, setTrackName] = useState("Bones");
+  const { tracks, isLoading, error } = useMusicTracks({ name: trackName });
+
+  const changeHandler = useCallback((event) => {
+    setTrackName(event.target.value);
+  }, []);
+
+  let content;
 
   if (error) {
-    return <p>Error</p>;
+    content = <p>Error</p>;
+  } else if (isLoading) {
+    content = <p>Loading...</p>;
+  } else {
+    content = tracks?.map((x) => <div key={x.id}>{x.name}</div>);
   }
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  const cards = tracks?.map((x) => <div key={x.id}>{x.name}</div>);
-  return <div>{cards}</div>;
+  return (
+    <div>
+      <input value={trackName} type="text" onChange={changeHandler} />
+      {content}
+    </div>
+  );
 };
 
 export default Tracks;

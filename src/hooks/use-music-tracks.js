@@ -18,6 +18,7 @@ const useMusicTracks = ({name}) => {
     getTracks();
 
     // TODO: what if the component is unmounted?
+    // TODO: why we send the request right away? let's send it 2secs later.
   }, [sendRequest, name]);
 
   return { tracks, isLoading, error };
