@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
 import { useCallback } from "react";
-import { Box, Stack, TextField } from "@mui/material";
+import { Box, LinearProgress, Stack, TextField } from "@mui/material";
 import Track from "./Track";
 import { useRef } from "react";
 import ErrorAlert from "../UI/ErrorAlert";
@@ -23,7 +23,7 @@ const Tracks = () => {
   if (error) {
     content = <ErrorAlert onRetry={handleRetry} content="An error occurred" />;
   } else if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <LinearProgress />;
   } else {
     content = (
       <Stack direction="column" gap={1}>
