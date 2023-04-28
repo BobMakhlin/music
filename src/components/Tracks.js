@@ -1,7 +1,8 @@
 import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
 import { useCallback } from "react";
-import { Box, TextField } from "@mui/material";
+import { Box, Stack, TextField, Typography } from "@mui/material";
+import Track from "./Track";
 
 const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
@@ -18,7 +19,18 @@ const Tracks = () => {
   } else if (isLoading) {
     content = <p>Loading...</p>;
   } else {
-    content = tracks?.map((x) => <div key={x.id}>{x.name}</div>);
+    content = (
+      <Stack direction="column" gap={1}>
+        {tracks?.map((track) => (
+          <Track
+            key={track.id}
+            name={track.name}
+            albumImage={track.albumImage}
+            duration={track.duration}
+          ></Track>
+        ))}
+      </Stack>
+    );
   }
 
   return (
@@ -28,6 +40,7 @@ const Tracks = () => {
         variant="standard"
         value={trackName}
         onChange={changeHandler}
+        sx={{ mb: 4 }}
       />
       {content}
     </Box>
