@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
 import { useCallback } from "react";
+import { Box, TextField } from "@mui/material";
 
 const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
@@ -21,10 +22,15 @@ const Tracks = () => {
   }
 
   return (
-    <div>
-      <input value={trackName} type="text" onChange={changeHandler} />
+    <Box>
+      <TextField
+        id="search"
+        variant="standard"
+        value={trackName}
+        onChange={changeHandler}
+      />
       {content}
-    </div>
+    </Box>
   );
 };
 
