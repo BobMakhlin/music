@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import useGetRequest from "./use-get-request";
 import useEnv from "./use-env";
+import { debounce } from "lodash";
 
-const useMusicTracks = ({name}) => {
+const useMusicTracks = ({ name }) => {
   const { musicApi } = useEnv();
   const {
     data: tracks,
@@ -14,10 +15,14 @@ const useMusicTracks = ({name}) => {
   useEffect(() => {
     const getTracks = async () => {
       await sendRequest(`/Tracks?name=${name}`);
-    }
-    getTracks();
+    };
+    
+    const debouncedFn = debounce(getTracks, 1000);
+    debouncedFn();
 
-    // TODO: what if the component is unmounted?
+    return () => {
+      debouncedFn.cancel();
+    };
   }, [sendRequest, name]);
 
   return { tracks, isLoading, error };

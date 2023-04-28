@@ -8,6 +8,7 @@ const useGetRequest = (baseUrl = null) => {
 
   const sendRequest = useCallback(async (url) => {
     try {
+      setError(null);
       setIsLoading(true);
       const targetUrl = baseUrl ? baseUrl.concat(url) : url;
       const response = await axios.get(targetUrl);
