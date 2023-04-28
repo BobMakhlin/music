@@ -1,21 +1,27 @@
 import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
 import { useCallback } from "react";
-import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Box, Stack, TextField } from "@mui/material";
 import Track from "./Track";
+import { useRef } from "react";
+import ErrorAlert from "../UI/ErrorAlert";
 
 const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
   const { tracks, isLoading, error } = useMusicTracks({ name: trackName });
+  const inputRef = useRef(null);
 
   const changeHandler = useCallback((event) => {
     setTrackName(event.target.value);
+  }, []);
+  const handleRetry = useCallback(() => {
+    inputRef.current.focus();
   }, []);
 
   let content;
 
   if (error) {
-    content = <p>Error</p>;
+    content = <ErrorAlert onRetry={handleRetry} content="An error occurred" />;
   } else if (isLoading) {
     content = <p>Loading...</p>;
   } else {
@@ -41,6 +47,7 @@ const Tracks = () => {
         value={trackName}
         onChange={changeHandler}
         sx={{ mb: 4 }}
+        inputRef={inputRef}
       />
       {content}
     </Box>
