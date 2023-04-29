@@ -9,11 +9,11 @@ function Track({ name, albumImage, duration }) {
   return (
     <ListItem disablePadding>
       <ListItemButton>
-        <img src={albumImage} alt={name} loading="lazy" />
-        <Typography variant="h6" fontWeight={300} ml={1}>
+        <img height="40px" src={albumImage} alt={name} loading="lazy" />
+        <Typography variant="span" fontWeight={500} ml={2}>
           {name}
         </Typography>
-        <Typography variant="span" ml="auto">
+        <Typography variant="caption" fontWeight={500} ml="auto">
           {duration?.minutes}:{duration?.seconds}
         </Typography>
       </ListItemButton>
