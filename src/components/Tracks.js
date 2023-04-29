@@ -1,7 +1,12 @@
 import { useState } from "react";
 import useMusicTracks from "../hooks/use-music-tracks";
 import { useCallback } from "react";
-import { Box, LinearProgress, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  LinearProgress,
+  List,
+  TextField,
+} from "@mui/material";
 import Track from "./Track";
 import { useRef } from "react";
 import ErrorAlert from "../UI/ErrorAlert";
@@ -26,7 +31,7 @@ const Tracks = () => {
     content = <LinearProgress />;
   } else {
     content = (
-      <Stack direction="column" gap={1}>
+      <List>
         {tracks?.map((track) => (
           <Track
             key={track.id}
@@ -35,7 +40,7 @@ const Tracks = () => {
             duration={track.duration}
           ></Track>
         ))}
-      </Stack>
+      </List>
     );
   }
 
