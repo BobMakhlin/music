@@ -13,7 +13,11 @@ function App() {
   return (
     // TODO: create a wrapper over ThemeProvider.
     <ThemeProvider theme={darkTheme}> 
-      <Box bgcolor="background.default" color="text.primary" sx={{ minHeight: "100%" }}>
+      <Box
+        bgcolor="background.default"
+        color="text.primary"
+        sx={{ minHeight: "100%" }}
+      >
         <Stack direction="row" sx={{ minHeight: "100%" }}>
           <Sidebar></Sidebar>
           <Tracks></Tracks>
