@@ -1,7 +1,7 @@
 import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
 import FilterPanel from "./components/FilterPanel";
 import Sidebar from "./components/Sidebar";
-import Tracks from "./components/Tracks";
+import Tracks from "./components/Tracks/Tracks";
 
 const darkTheme = createTheme({
   palette: {

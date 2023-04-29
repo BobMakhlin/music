@@ -1,15 +1,11 @@
 import { useState } from "react";
-import useMusicTracks from "../hooks/use-music-tracks";
+import useMusicTracks from "../../hooks/use-music-tracks";
 import { useCallback } from "react";
-import {
-  Box,
-  LinearProgress,
-  List,
-  TextField,
-} from "@mui/material";
+import { Box, LinearProgress, List, TextField } from "@mui/material";
 import Track from "./Track";
 import { useRef } from "react";
-import ErrorAlert from "../UI/ErrorAlert";
+import ErrorAlert from "../../UI/ErrorAlert";
+import SearchInput from "./SearchInput";
 
 const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
@@ -46,12 +42,9 @@ const Tracks = () => {
 
   return (
     <Box flex={4}>
-      <TextField
-        id="search"
-        variant="standard"
+      <SearchInput
         value={trackName}
         onChange={changeHandler}
-        sx={{ mb: 4 }}
         inputRef={inputRef}
       />
       {content}
