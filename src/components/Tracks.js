@@ -40,7 +40,7 @@ const Tracks = () => {
   }
 
   return (
-    <Box>
+    <Box flex={4}>
       <TextField
         id="search"
         variant="standard"

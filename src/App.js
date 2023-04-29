@@ -1,11 +1,15 @@
-import './App.css';
+import { Stack } from '@mui/material';
+import FilterPanel from './components/FilterPanel';
+import Sidebar from './components/Sidebar';
 import Tracks from './components/Tracks';
 
 function App() {
   return (
-    <div className="App">
+    <Stack direction="row">
+      <Sidebar></Sidebar>
       <Tracks></Tracks>
-    </div>
+      <FilterPanel></FilterPanel>
+    </Stack>
   );
 }
 
