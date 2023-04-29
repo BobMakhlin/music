@@ -1,15 +1,26 @@
-import { Stack } from '@mui/material';
-import FilterPanel from './components/FilterPanel';
-import Sidebar from './components/Sidebar';
-import Tracks from './components/Tracks';
+import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
+import FilterPanel from "./components/FilterPanel";
+import Sidebar from "./components/Sidebar";
+import Tracks from "./components/Tracks";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   return (
-    <Stack direction="row">
-      <Sidebar></Sidebar>
-      <Tracks></Tracks>
-      <FilterPanel></FilterPanel>
-    </Stack>
+    // TODO: create a wrapper over ThemeProvider.
+    <ThemeProvider theme={darkTheme}> 
+      <Box bgcolor="background.default" color="text.primary" sx={{ minHeight: "100%" }}>
+        <Stack direction="row" sx={{ minHeight: "100%" }}>
+          <Sidebar></Sidebar>
+          <Tracks></Tracks>
+          <FilterPanel></FilterPanel>
+        </Stack>
+      </Box>
+    </ThemeProvider>
   );
 }
 
