@@ -3,7 +3,7 @@ import React from 'react'
 
 function Sidebar() {
   return (
-    <Box flex={1}></Box>
+    <Box sx={{ gridArea: "sidebar" }}></Box>
   )
 }
 

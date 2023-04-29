@@ -41,7 +41,7 @@ const Tracks = () => {
   }
 
   return (
-    <Box flex={4}>
+    <Box sx={{ gridArea: "tracks", overflowY: "scroll" }}>
       <SearchInput
         value={trackName}
         onChange={changeHandler}

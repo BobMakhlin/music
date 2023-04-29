@@ -8,7 +8,7 @@ function SearchInput({ value, onChange, inputRef }) {
       variant="standard"
       value={value}
       onChange={onChange}
-      sx={{ mb: 4, mt: 1 }}
+      sx={{ mb: 3, mt: 1 }}
       inputRef={inputRef}
       fullWidth
     />
