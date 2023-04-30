@@ -7,6 +7,7 @@ import { useRef } from "react";
 import ErrorAlert from "../../UI/ErrorAlert";
 import SearchInput from "./SearchInput";
 import { useCurrentTrack } from "../../store/track-context";
+import ReactHotKey from "react-shortcut";
 
 const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
@@ -17,14 +18,19 @@ const Tracks = () => {
   const changeHandler = useCallback((event) => {
     setTrackName(event.target.value);
   }, []);
-  const handleRetry = useCallback(() => {
+  const makeSearchInputFocused = useCallback(() => {
     inputRef.current.focus();
   }, []);
 
   let content;
 
   if (error) {
-    content = <ErrorAlert onRetry={handleRetry} content="An error occurred" />;
+    content = (
+      <ErrorAlert
+        onRetry={makeSearchInputFocused}
+        content="An error occurred"
+      />
+    );
   } else if (isLoading) {
     content = <LinearProgress />;
   } else {
@@ -42,14 +48,17 @@ const Tracks = () => {
   }
 
   return (
-    <Box sx={{ gridArea: "tracks", overflowY: "scroll" }}>
-      <SearchInput
-        value={trackName}
-        onChange={changeHandler}
-        inputRef={inputRef}
-      />
-      {content}
-    </Box>
+    <>
+      <Box sx={{ gridArea: "tracks", overflowY: "scroll" }}>
+        <SearchInput
+          value={trackName}
+          onChange={changeHandler}
+          inputRef={inputRef}
+        />
+        {content}
+      </Box>
+      <ReactHotKey keys="Shift Shift" onKeysPressed={makeSearchInputFocused} />
+    </>
   );
 };
 
