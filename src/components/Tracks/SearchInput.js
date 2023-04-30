@@ -44,6 +44,7 @@ function SearchInput({ value, onChange, inputRef }) {
       onBlur={handleBlur}
       InputProps={{
         endAdornment: <ShortcutChip isVisible={shortcutIsVisible} />,
+        autoComplete: "off",
       }}
     />
   );
