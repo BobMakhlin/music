@@ -1,24 +1,33 @@
-import {
-  ListItem,
-  ListItemButton,
-  Typography,
-} from "@mui/material";
+import { ListItem, ListItemButton, Typography } from "@mui/material";
 import React from "react";
+import { useCallback } from "react";
+import { useCurrentTrackDispatch } from "../../store/track-context";
 
-function Track({ name, albumImage, duration }) {
+function Track({ track, selected }) {
+  const setCurrentTrack = useCurrentTrackDispatch();
+
+  const handleClick = useCallback(() => {
+    setCurrentTrack(track);
+  }, [setCurrentTrack, track]);
+
   return (
-    <ListItem disablePadding>
-      <ListItemButton>
-        <img height="40px" src={albumImage} alt={name} loading="lazy" />
+    <ListItem disablePadding selected={selected}>
+      <ListItemButton onClick={handleClick}>
+        <img
+          height="40px"
+          src={track.albumImage}
+          alt={track.name}
+          loading="lazy"
+        />
         <Typography variant="span" fontWeight={500} ml={2}>
-          {name}
+          {track.name}
         </Typography>
         <Typography variant="caption" fontWeight={500} ml="auto">
-          {duration?.minutes}:{duration?.seconds}
+          {track.duration?.minutes}:{track.duration?.seconds}
         </Typography>
       </ListItemButton>
     </ListItem>
   );
 }
 
-export default Track;
+export default React.memo(Track);

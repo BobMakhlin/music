@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import AudioPanel from "./components/AudioPanel/AudioPanel";
 import FilterPanel from "./components/FilterPanel";
 import Sidebar from "./components/Sidebar";
 import Tracks from "./components/Tracks/Tracks";
@@ -6,7 +7,7 @@ import Tracks from "./components/Tracks/Tracks";
 function App() {
   return (
     <Box
-      bgcolor="background.default"
+      bgcolor="background.main"
       color="text.primary"
       sx={{
         height: "100%",
@@ -20,8 +21,7 @@ function App() {
       <Sidebar />
       <Tracks />
       <FilterPanel />
-      <Box sx={{ gridArea: "audioplayer", height: "100px" }} bgcolor="black">
-      </Box>
+      <AudioPanel />
     </Box>
   );
 }

@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ColorModeProvider from "./store/color-mode-context";
+import CurrentTrackProvider from "./store/track-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ColorModeProvider>
-    <App />
+    <CurrentTrackProvider>
+      <App />
+    </CurrentTrackProvider>
   </ColorModeProvider>
 );
 
