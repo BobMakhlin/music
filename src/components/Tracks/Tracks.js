@@ -12,7 +12,7 @@ const Tracks = () => {
   const [trackName, setTrackName] = useState("Bones");
   const { tracks, isLoading, error } = useMusicTracks({ name: trackName });
   const inputRef = useRef(null);
-  const currentTrack = useCurrentTrack();
+  const { currentTrack, setCurrentTrack } = useCurrentTrack();
 
   const changeHandler = useCallback((event) => {
     setTrackName(event.target.value);
@@ -20,6 +20,12 @@ const Tracks = () => {
   const handleRetry = useCallback(() => {
     inputRef.current.focus();
   }, []);
+  const handleTrackClick = useCallback(
+    (track) => {
+      setCurrentTrack(track);
+    },
+    [setCurrentTrack]
+  );
 
   let content;
 
@@ -35,6 +41,7 @@ const Tracks = () => {
             key={track.id}
             selected={currentTrack?.id === track.id ?? false}
             track={track}
+            onClick={handleTrackClick}
           />
         ))}
       </List>

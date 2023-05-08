@@ -1,24 +1,27 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
 
-const CurrentTrackContext = createContext(null);
-const CurrentTrackDispatchContext = createContext(() => {
-  // By default is a dummy empty function.
+const CurrentTrackContext = createContext({
+  currentTrack: null,
+  setCurrentTrack: () => {
+    // By default is a dummy empty function.
+  },
 });
 
 const CurrentTrackProvider = ({ children }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
 
+  const contextValue = {
+    currentTrack,
+    setCurrentTrack,
+  };
+
   return (
-    <CurrentTrackContext.Provider value={currentTrack}>
-      <CurrentTrackDispatchContext.Provider value={setCurrentTrack}>
-        {children}
-      </CurrentTrackDispatchContext.Provider>
+    <CurrentTrackContext.Provider value={contextValue}>
+      {children}
     </CurrentTrackContext.Provider>
   );
 };
 
 export const useCurrentTrack = () => useContext(CurrentTrackContext);
-export const useCurrentTrackDispatch = () =>
-  useContext(CurrentTrackDispatchContext);
 export default CurrentTrackProvider;

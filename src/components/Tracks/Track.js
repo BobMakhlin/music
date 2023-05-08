@@ -1,20 +1,16 @@
 import { ListItem, ListItemButton, Typography } from "@mui/material";
 import React from "react";
-import { useCallback } from "react";
-import { useCurrentTrackDispatch } from "../../store/track-context";
 
-function Track({ track, selected }) {
-  const setCurrentTrack = useCurrentTrackDispatch();
-
-  const handleClick = useCallback(() => {
-    setCurrentTrack(track);
-  }, [setCurrentTrack, track]);
+function Track({ track, selected, onClick }) {
+  const handleClick = () => {
+    onClick(track);
+  };
 
   return (
     <ListItem disablePadding selected={selected}>
       <ListItemButton onClick={handleClick}>
         <img
-          height="40px"
+          height={40}
           src={track.albumImage}
           alt={track.name}
           loading="lazy"

@@ -5,9 +5,9 @@ function CurrentlyPlayingTrack({ track }) {
   return (
     <Stack flex={1} direction="row" gap={2} alignItems="center">
       <img
-        height="56px"
+        height={56}
         src={track?.albumImage}
-        alt={track?.name}
+        alt={track?.name ?? "album"}
         loading="lazy"
         style={{ borderRadius: "2px" }}
       />

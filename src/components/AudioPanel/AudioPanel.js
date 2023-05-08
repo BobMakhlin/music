@@ -5,15 +5,15 @@ import { useCurrentTrack } from "../../store/track-context";
 import CurrentlyPlayingTrack from "./CurrentlyPlayingTrack";
 
 function AudioPanel() {
-  const currentTrack = useCurrentTrack();
+  const { currentTrack } = useCurrentTrack();
 
   return (
     <Stack
       sx={{
         padding: 2,
         gridArea: "audioplayer",
+        bgcolor: "background.dark",
       }}
-      bgcolor="background.dark"
       direction="row"
     >
       <CurrentlyPlayingTrack track={currentTrack} />
@@ -21,7 +21,7 @@ function AudioPanel() {
       <Box flex={2}>
         <MuiAudioPlayer
           id="player"
-          containerWidth={350}
+          containerWidth="22em"
           display="timeline"
           inline
           src={currentTrack?.previewUrl}
