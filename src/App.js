@@ -1,4 +1,5 @@
-import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
+import { Box } from "@mui/material";
+import AudioPanel from "./components/AudioPanel/AudioPanel";
 import FilterPanel from "./components/FilterPanel";
 import Sidebar from "./components/Sidebar";
 import Tracks from "./components/Tracks/Tracks";
@@ -6,15 +7,21 @@ import Tracks from "./components/Tracks/Tracks";
 function App() {
   return (
     <Box
-      bgcolor="background.default"
+      bgcolor="background.main"
       color="text.primary"
-      sx={{ minHeight: "100%" }}
+      sx={{
+        height: "100%",
+        display: "grid",
+        gridTemplateAreas: `"sidebar tracks rightbar"
+      "audioplayer audioplayer audioplayer"`,
+        gridTemplateColumns: "1fr 4fr 2fr",
+        gridTemplateRows: "1fr auto",
+      }}
     >
-      <Stack direction="row" sx={{ minHeight: "100%" }}>
-        <Sidebar></Sidebar>
-        <Tracks></Tracks>
-        <FilterPanel></FilterPanel>
-      </Stack>
+      <Sidebar />
+      <Tracks />
+      <FilterPanel />
+      <AudioPanel />
     </Box>
   );
 }

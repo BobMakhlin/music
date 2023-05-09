@@ -1,24 +1,29 @@
-import {
-  ListItem,
-  ListItemButton,
-  Typography,
-} from "@mui/material";
+import { ListItem, ListItemButton, Typography } from "@mui/material";
 import React from "react";
 
-function Track({ name, albumImage, duration }) {
+function Track({ track, selected, onClick }) {
+  const handleClick = () => {
+    onClick(track);
+  };
+
   return (
-    <ListItem disablePadding>
-      <ListItemButton>
-        <img src={albumImage} alt={name} loading="lazy" />
-        <Typography variant="h6" fontWeight={300} ml={1}>
-          {name}
+    <ListItem disablePadding selected={selected}>
+      <ListItemButton onClick={handleClick}>
+        <img
+          height={40}
+          src={track.albumImage}
+          alt={track.name}
+          loading="lazy"
+        />
+        <Typography variant="span" fontWeight={500} ml={2}>
+          {track.name}
         </Typography>
-        <Typography variant="span" ml="auto">
-          {duration?.minutes}:{duration?.seconds}
+        <Typography variant="caption" fontWeight={500} ml="auto">
+          {track.duration?.minutes}:{track.duration?.seconds}
         </Typography>
       </ListItemButton>
     </ListItem>
   );
 }
 
-export default Track;
+export default React.memo(Track);

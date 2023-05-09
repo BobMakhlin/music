@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import ColorModeProvider from "./store/color-mode-context";
+import CurrentTrackProvider from "./store/track-context";
+import DarkThemeProvider from "./store/dark-theme-provider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ColorModeProvider>
-    <App />
-  </ColorModeProvider>
+  <DarkThemeProvider>
+    <CurrentTrackProvider>
+      <App />
+    </CurrentTrackProvider>
+  </DarkThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
