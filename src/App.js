@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import AudioPanel from "./components/AudioPanel/AudioPanel";
-import FilterPanel from "./components/FilterPanel/FilterPanel";
 import Sidebar from "./components/Sidebar";
 import Tracks from "./components/Tracks/Tracks";
 
@@ -20,7 +19,6 @@ function App() {
     >
       <Sidebar />
       <Tracks />
-      <FilterPanel />
       <AudioPanel />
     </Box>
   );
