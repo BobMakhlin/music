@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import useGetRequest from "./use-get-request";
 import useEnv from "./use-env";
 import { debounce } from "lodash";
+import urlcat from "urlcat";
 
-const useMusicTracks = ({ name }) => {
+const useMusicTracks = ({ name, artist, genre, album }) => {
   const { musicApi } = useEnv();
   const {
     data: tracks,
@@ -13,8 +14,18 @@ const useMusicTracks = ({ name }) => {
   } = useGetRequest(musicApi);
 
   useEffect(() => {
+    if (!name && !artist && !genre && !album) {
+      return;
+    }
+
     const getTracks = async () => {
-      await sendRequest(`/Tracks?name=${name}`);
+      const url = urlcat("", "/Tracks", {
+        name,
+        artist,
+        genre,
+        album,
+      });
+      await sendRequest(url);
     };
     
     const debouncedFn = debounce(getTracks, 1000);
@@ -23,7 +34,7 @@ const useMusicTracks = ({ name }) => {
     return () => {
       debouncedFn.cancel();
     };
-  }, [sendRequest, name]);
+  }, [sendRequest, name, artist, genre, album]);
 
   return { tracks, isLoading, error };
 };
